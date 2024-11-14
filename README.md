@@ -14,28 +14,24 @@ sudo composer create-project laravel/laravel bancoPokemon
 cd bancoPokemon/
 Dale los permisos necesarios a tu directorio para evitar problemas al trabajar con los archivos:
 
-bash
-Copiar código
+
 sudo chown -R ubuntu:www-data /var/www/html/laraveles/
 sudo chmod -R 775 /var/www/html/laraveles/
 Si estás utilizando un repositorio clonado previamente, asegúrate de tenerlo en el directorio:
 
-bash
-Copiar código
+
 cd /var/www/html/laraveles/
 git clone https://github.com/dwesizv/traditionalLaravelApp.git
 cd bancoPokemon/
 Instala las dependencias del proyecto:
 
-bash
-Copiar código
+
 composer install
 php artisan key:generate
 Configuración de la Base de Datos
 Edita el archivo .env para configurar la conexión a la base de datos:
 
-ini
-Copiar código
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -44,17 +40,15 @@ DB_USERNAME=usuario
 DB_PASSWORD=contraseña
 Luego, ejecuta las migraciones:
 
-bash
-Copiar código
+
 php artisan migrate
 Copia la carpeta assets al directorio public y crea las vistas necesarias dentro de resources/views (las carpetas pokeball y main).
 
-2. Controladores
+##2. Controladores
 MainController.php
 Crea un controlador para manejar el login, logout y la vista principal:
 
-php
-Copiar código
+
 <?php
 
 namespace App\Http\Controllers;
@@ -83,10 +77,9 @@ class MainController extends Controller
     }
 }
 PokemonController.php
-Crea un controlador para manejar las operaciones CRUD de los Pokémon:
+#Crea un controlador para manejar las operaciones CRUD de los Pokémon:
 
-php
-Copiar código
+
 <?php
 
 namespace App\Http\Controllers;
@@ -135,11 +128,9 @@ class PokemonController extends Controller
         return redirect()->route('pokemon.index');
     }
 }
-3. Rutas (web.php)
+##3. Rutas (web.php)
 Define las rutas necesarias en routes/web.php:
 
-php
-Copiar código
 <?php
 
 use App\Http\Controllers\MainController;
@@ -152,20 +143,18 @@ Route::get('logout', [MainController::class, 'logout'])->name('logout');
 Route::resource('pokemon', PokemonController::class);
 Si es necesario, habilita el módulo de reescritura de Apache y reinicia el servicio:
 
-bash
-Copiar código
+
 sudo nano /etc/apache2/apache2.conf
 # <Directory /var/www/>
 # AllowOverride All
 
 sudo a2enmod rewrite
 sudo service apache2 restart
-4. Vistas
+##4. Vistas
 main.blade.php
 La vista principal que ofrece las opciones de login/logout y acceso al banco de Pokémon:
 
-php
-Copiar código
+
 @extends('base')
 
 @section('title', 'Banco Pokémon')
@@ -182,8 +171,7 @@ Copiar código
 index.blade.php
 Vista para mostrar la lista de Pokémon y las opciones de edición y eliminación:
 
-php
-Copiar código
+
 @extends('base')
 
 @section('title', 'Listado de Pokémon')
@@ -219,11 +207,10 @@ Copiar código
         @csrf
     </form>
 @endsection
-5. Script JavaScript
+##5. Script JavaScript
 En public/assets/js/script.js, agrega el siguiente código para manejar la confirmación de eliminación mediante JavaScript:
 
-javascript
-Copiar código
+
 (function () {
 
     let table = document.getElementById('pokemonTable');
@@ -246,30 +233,15 @@ Copiar código
     }
 
 })();
-6. Ajustes de Seguridad en Apache
+##6. Ajustes de Seguridad en Apache
 Asegúrate de que AllowOverride All esté habilitado en el archivo de configuración de Apache (/etc/apache2/apache2.conf) para permitir que .htaccess funcione correctamente:
 
-bash
-Copiar código
+
 sudo nano /etc/apache2/apache2.conf
 # <Directory /var/www/>
 # AllowOverride All
 Luego, reinicia Apache para aplicar los cambios:
 
-bash
-Copiar código
+
 sudo service apache2 restart
 Este proyecto proporciona una estructura básica para una aplicación de CRUD de Pokémon utilizando Laravel, permitiendo realizar todas las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los Pokémon.
-
-yaml
-Copiar código
-
----
-
-Puedes copiar y pegar este contenido directamente en tu archivo `README.md` en GitHub. Ahora se ha reemplazado "bank" por "pokeball" en todas las partes relevantes del código. ¡Espero que te sirva!
-
-
-
-
-
-ChatGPT puede com
