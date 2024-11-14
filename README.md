@@ -46,7 +46,7 @@ php artisan migrate
 ```
 Copia la carpeta assets al directorio public y crea las vistas necesarias dentro de resources/views (las carpetas pokeball y main).
 
-##2. Controladores
+## 2.  Controladores
 
 MainController.php
 
@@ -82,7 +82,7 @@ class MainController extends Controller
 ```
 PokemonController.php
 
-#Crea un controlador para manejar las operaciones CRUD de los Pokémon:
+Crea un controlador para manejar las operaciones CRUD de los Pokémon:
 
 ```bash
 <?php
@@ -134,7 +134,7 @@ class PokemonController extends Controller
 }
 
 ```
-##3. Rutas (web.php)
+## 3.  Rutas (web.php)
 Define las rutas necesarias en routes/web.php:
 ```bash
 <?php
@@ -161,7 +161,7 @@ sudo a2enmod rewrite
 sudo service apache2 restart
 ```
 
-##4. Vistas
+## 4.  Vistas
 
 main.blade.php
 
@@ -223,7 +223,7 @@ Vista para mostrar la lista de Pokémon y las opciones de edición y eliminació
 @endsection
 
 ```
-##5. Script JavaScript
+## 5.  Script JavaScript
 En public/assets/js/script.js, agrega el siguiente código para manejar la confirmación de eliminación mediante JavaScript:
 
 ```bash
@@ -250,7 +250,7 @@ En public/assets/js/script.js, agrega el siguiente código para manejar la confi
 
 })();
 ```
-##6. Ajustes de Seguridad en Apache
+## 6.  Ajustes de Seguridad en Apache
 Asegúrate de que AllowOverride All esté habilitado en el archivo de configuración de Apache (/etc/apache2/apache2.conf) para permitir que .htaccess funcione correctamente:
 
 ```bash
