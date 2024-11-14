@@ -38,17 +38,20 @@ DB_PORT=3306
 DB_DATABASE=nombreBaseDatos
 DB_USERNAME=usuario
 DB_PASSWORD=contraseña
+```
 Luego, ejecuta las migraciones:
 
-
+```bash
 php artisan migrate
+```
 Copia la carpeta assets al directorio public y crea las vistas necesarias dentro de resources/views (las carpetas pokeball y main).
 
 ##2. Controladores
+
 MainController.php
+
 Crea un controlador para manejar el login, logout y la vista principal:
-
-
+```bash
 <?php
 
 namespace App\Http\Controllers;
@@ -76,12 +79,13 @@ class MainController extends Controller
         return view('main.main', ['activeHome' => 'active']);
     }
 }
+```
 PokemonController.php
+
 #Crea un controlador para manejar las operaciones CRUD de los Pokémon:
 
-
+```bash
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
@@ -128,9 +132,11 @@ class PokemonController extends Controller
         return redirect()->route('pokemon.index');
     }
 }
+
+```
 ##3. Rutas (web.php)
 Define las rutas necesarias en routes/web.php:
-
+```bash
 <?php
 
 use App\Http\Controllers\MainController;
@@ -141,20 +147,27 @@ Route::get('/', [MainController::class, 'main'])->name('main');
 Route::get('login', [MainController::class, 'login'])->name('login');
 Route::get('logout', [MainController::class, 'logout'])->name('logout');
 Route::resource('pokemon', PokemonController::class);
+
+```
 Si es necesario, habilita el módulo de reescritura de Apache y reinicia el servicio:
 
-
+```bash
 sudo nano /etc/apache2/apache2.conf
+
 # <Directory /var/www/>
 # AllowOverride All
 
 sudo a2enmod rewrite
 sudo service apache2 restart
+```
+
 ##4. Vistas
+
 main.blade.php
+
 La vista principal que ofrece las opciones de login/logout y acceso al banco de Pokémon:
 
-
+```bash
 @extends('base')
 
 @section('title', 'Banco Pokémon')
@@ -168,9 +181,10 @@ La vista principal que ofrece las opciones de login/logout y acceso al banco de 
     &nbsp;
     <a href="{{ url('pokemon') }}" class="btn btn-primary">Banco de Pokémon</a>
 @endsection
+```
 index.blade.php
 Vista para mostrar la lista de Pokémon y las opciones de edición y eliminación:
-
+```bash
 
 @extends('base')
 
@@ -207,10 +221,12 @@ Vista para mostrar la lista de Pokémon y las opciones de edición y eliminació
         @csrf
     </form>
 @endsection
+
+```
 ##5. Script JavaScript
 En public/assets/js/script.js, agrega el siguiente código para manejar la confirmación de eliminación mediante JavaScript:
 
-
+```bash
 (function () {
 
     let table = document.getElementById('pokemonTable');
@@ -233,15 +249,17 @@ En public/assets/js/script.js, agrega el siguiente código para manejar la confi
     }
 
 })();
+```
 ##6. Ajustes de Seguridad en Apache
 Asegúrate de que AllowOverride All esté habilitado en el archivo de configuración de Apache (/etc/apache2/apache2.conf) para permitir que .htaccess funcione correctamente:
 
-
+```bash
 sudo nano /etc/apache2/apache2.conf
 # <Directory /var/www/>
 # AllowOverride All
+```
 Luego, reinicia Apache para aplicar los cambios:
-
-
+```bash
 sudo service apache2 restart
+```
 Este proyecto proporciona una estructura básica para una aplicación de CRUD de Pokémon utilizando Laravel, permitiendo realizar todas las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los Pokémon.
