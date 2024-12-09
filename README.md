@@ -258,8 +258,19 @@ sudo nano /etc/apache2/apache2.conf
 # <Directory /var/www/>
 # AllowOverride All
 ```
+
 Luego, reinicia Apache para aplicar los cambios:
 ```bash
 sudo service apache2 restart
 ```
 Este proyecto proporciona una estructura básica para una aplicación de CRUD de Pokémon utilizando Laravel, permitiendo realizar todas las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los Pokémon.
+
+
+## Captura
+<img src="./capturas/1.png" alt="">
+<img src="./capturas/2.png" alt="">
+<img src="./capturas/3.png" alt="">
+<img src="./capturas/4.png" alt="">
+<img src="./capturas/5.png" alt="">
+<img src="./capturas/6.png" alt="">
+<img src="./capturas/7.png" alt="">
